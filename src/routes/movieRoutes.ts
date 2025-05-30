@@ -1,5 +1,6 @@
 import express, {Request, Response} from "express";
 import MovieModel, {Movie} from '../models/Movie'
+import ReviewModel, {Review} from "../models/Review";
 
 const router = express.Router();
 
@@ -33,7 +34,7 @@ router.get("/:id", async (req: Request, res: Response) => {
     }
 })
 
-router.post("/:id", async(req: Request, res: Response) => {
+router.put("/:id", async(req: Request, res: Response) => {
     try{
         const {id} = req.params;
 
@@ -61,6 +62,36 @@ router.delete("/:id", async(req: Request, res: Response) => {
     }catch(err){
         const error = err instanceof Error ? err : new Error("unknown error")
         res.status(500).json({error:`Error with deleting movie${error.message}`});
+    }
+})
+
+router.get("/:id/reviews", async (req: Request, res: Response) => {
+    try{
+        const {id} = req.params;
+        const review: Array<Review> = await ReviewModel.find({movieId: id});
+        res.json(review);
+    } catch(err){
+        res.status(500).json({error: `Error with getting review ${err}`});
+    }
+})
+
+router.post("/:id/reviews", async(req: Request, res: Response) => {
+    try{
+        const {_id, author, content} = req.body;
+
+        const {id} = req.params;
+
+
+
+        const currentData = new Date();
+        const createdAt: string = `${currentData.toDateString()} ${currentData.getHours()}:${currentData.getMinutes()}`;
+
+        const newReview: Review | null = new ReviewModel({_id, movieId: id, author, content, createdAt});
+        await newReview.save();
+        res.status(201).json({message: `Added new movie: ${newReview}`});
+
+    }catch(err){
+        res.status(500).json({error: "Error with addning movie ", err});
     }
 })
 export default router;

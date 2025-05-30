@@ -4,6 +4,7 @@ import path from "path";
 import dotenv from "dotenv";
 import movieRoutes from "./routes/movieRoutes";
 import connectDB from "./database";
+import reviewRoutes from "./routes/reviewRoutes";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(cors());
 
 // app.use(express.static(path.join(__dirname, "../public")));
 app.use("/movies", movieRoutes)
+app.use("/reviews", reviewRoutes)
 
 app.get("/", (req, res) => {
     res.json({message: "api stared"});

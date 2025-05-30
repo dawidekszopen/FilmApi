@@ -1,0 +1,40 @@
+### GET request to example server
+GET http://localhost:5000/movies/2/reviews
+###
+
+### GET request to example server
+POST http://localhost:5000/movies/1/reviews
+Content-Type: application/json
+
+{
+    "_id": 1,
+    "author": "Jane Doe",
+    "content": "Really enjoyed the plot twists and character development."
+}
+###
+
+### GET request to example server
+POST http://localhost:5000/movies/2/reviews
+Content-Type: application/json
+
+{
+"_id": 2,
+"author": "John Smith",
+"content": "An intense and emotional drama. Superb acting and cinematography."
+}
+###
+
+### POST request to example server
+PUT http://localhost:5000/reviews/2
+Content-Type: application/json
+
+{
+  "content": "this movie is stupid"
+}
+###
+
+### Delete
+DELETE http://localhost:5000/reviews/2
+Content-Type: application/json
+
+###
