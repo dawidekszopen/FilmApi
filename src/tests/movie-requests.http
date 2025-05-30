@@ -1,0 +1,59 @@
+### GET request to example server
+GET http://localhost:5000
+Content-Type: application/json
+###
+
+### GET request to example server
+GET http://localhost:5000/movies
+###
+
+### POST request to example server
+POST http://localhost:5000/movies
+Content-Type: application/json
+
+{
+  "_id": 1,
+  "title": "Inception",
+  "releaseYear": 2010,
+  "genre": "Science Fiction",
+  "director": "Christopher Nolan",
+  "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
+  "rating": 8.8,
+  "description": "A thief who steals corporate secrets through dream-sharing technology is given a chance to erase his criminal history."
+}
+###
+
+### POST request to example server
+POST http://localhost:5000/movies
+Content-Type: application/json
+
+{
+  "_id": 2,
+  "title": "The Matrix",
+  "releaseYear": 1999,
+  "genre": "Action",
+  "director": "Lana Wachowski",
+  "cast": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
+  "rating": 8.7,
+  "description": "A computer hacker learns about the true nature of his reality and his role in the war against its controllers."
+}
+###
+
+### GET request to example server
+GET http://localhost:5000/movies/1
+###
+
+### POST request to example server
+POST http://localhost:5000/movies/2
+Content-Type: application/json
+
+{
+  "title": "The Matrix 2"
+}
+###
+
+### Delete
+DELETE http://localhost:5000/movies/2
+Content-Type: application/json
+
+###
